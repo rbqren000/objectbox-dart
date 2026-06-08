@@ -18,4 +18,4 @@ update flutter_libs/android/build.gradle "${versionExpr}"
 update sync_flutter_libs/android/build.gradle "${versionExpr}"
 
 versionExpr="s/objectbox-android-objectbrowser:[^\"]*/objectbox-android-objectbrowser:${version}/g"
-update objectbox/example/flutter/objectbox_demo_relations/android/app/build.gradle "${versionExpr}"
+update objectbox/example/flutter/objectbox_demo_relations/android/app/build.gradle.kts "${versionExpr}"
