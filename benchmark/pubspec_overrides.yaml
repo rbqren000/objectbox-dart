@@ -1,4 +1,7 @@
-# This is only used for get and upgrade, but ignored by publish https://github.com/dart-lang/pub/pull/3215
+# For development: use the objectbox and generator package in this repository.
+# This file is only used for get and upgrade, but ignored by publish.
+# https://dart.dev/tools/pub/dependencies#pubspec-overrides
+# https://github.com/dart-lang/pub/pull/3215
 dependency_overrides:
   objectbox:
     path: ../objectbox
