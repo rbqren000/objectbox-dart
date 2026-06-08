@@ -69,15 +69,21 @@ Generator integration tests:
 
 ## CI Pipeline
 
-GitLab CI (`.gitlab-ci.yml`) runs:
-1. **format-and-analyze** – Formatting and static analysis
-2. **generator-integ-tests** – Generator integration tests
-3. **unit-tests** – Generator and objectbox unit tests (on lowest and latest Dart SDK)
-4. **test-coverage** – Coverage report generation
+This project is set up to run a pipeline in GitLab CI and two workflows on GitHub CI.
 
-Tested Dart versions:
-- Latest: 3.11.4
-- Lowest supported: 3.7.3
+GitLab CI (see [.gitlab-ci.yml](.gitlab-ci.yml)) runs checks and tests for packages that use only
+the Dart SDK. Also, tests are only run on Linux.
+
+GitHub CI (see [test](/.github/workflows/test.yml) and [code analysis](/.github/workflows/code-analysis.yml)
+workflows) also runs checks and tests that require a Flutter SDK. Tests are run on all supported
+platforms (macOS, Linux, Windows). Also, the main examples are verified to build for all supported
+platforms (including Android and iOS), indirectly verifying the generator works on all platforms.
+
+In general, CI runs code analysis and format checks, tests the generator, runs unit tests and 
+computes test code coverage.
+
+For notes about updating the tested Dart and Flutter SDK versions, see the [related dev doc](/dev-doc/updating-dart-flutter-and-dependencies.md).
+For the actually tested versions, see the CI config files linked above.
 
 ## Key Technical Details
 
