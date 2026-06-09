@@ -22,7 +22,7 @@ flutter clean
 flutter pub get
 
 # Flutter ~2.0 fails: The pubspec.lock file has changed since the .dart_tool/package_config.json file was generated, please run "pub get" again.
-generateCmd="dart run build_runner build --delete-conflicting-outputs"
+generateCmd="dart run build_runner build"
 $generateCmd || (flutter pub get && $generateCmd)
 
 # flutter drive is currently not available in GitHub Actions (TODO start an emulator/simulator?)
