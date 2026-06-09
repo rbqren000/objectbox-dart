@@ -75,17 +75,17 @@
         {
           "id": "4:7283934434991540148",
           "name": "ownerId",
+          "indexId": "1:2270527019024573303",
           "type": 11,
           "flags": 520,
-          "indexId": "1:2270527019024573303",
           "relationTarget": "Owner"
         },
         {
           "id": "5:9210112310070115196",
           "name": "eventId",
+          "indexId": "2:2852886931132575874",
           "type": 11,
           "flags": 520,
-          "indexId": "2:2852886931132575874",
           "relationTarget": "Event"
         }
       ],
