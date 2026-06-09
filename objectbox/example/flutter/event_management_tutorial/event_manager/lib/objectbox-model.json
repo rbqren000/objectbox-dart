@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:565921126206519054",
-      "lastPropertyId": "7:1470625487744464689",
+      "lastPropertyId": "4:5530031286269708082",
       "name": "Event",
       "properties": [
         {
@@ -100,11 +100,7 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    1105972491963820334,
-    5675935243526411073,
-    1470625487744464689
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }
