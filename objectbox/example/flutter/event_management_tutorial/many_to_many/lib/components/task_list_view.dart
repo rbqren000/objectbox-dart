@@ -9,9 +9,9 @@ class TaskList extends StatefulWidget {
   final int eventId;
 
   const TaskList({
-    Key? key,
+    super.key,
     required this.eventId,
-  }) : super(key: key);
+  });
 
   @override
   State<TaskList> createState() => _TaskListState();

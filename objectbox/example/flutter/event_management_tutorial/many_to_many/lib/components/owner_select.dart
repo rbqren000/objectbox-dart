@@ -4,7 +4,7 @@ import '../main.dart';
 import '../model.dart';
 
 class OwnerList extends StatefulWidget {
-  const OwnerList({Key? key}) : super(key: key);
+  const OwnerList({super.key});
 
   @override
   State<OwnerList> createState() => _OwnerListState();
@@ -67,11 +67,10 @@ class OwnersTileWidget extends StatelessWidget {
   final ValueChanged<Owner> onSelectedOwner;
 
   const OwnersTileWidget(
-      {Key? key,
+      {super.key,
       required this.owner,
       required this.isSelected,
-      required this.onSelectedOwner})
-      : super(key: key);
+      required this.onSelectedOwner});
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import './task_list_view.dart';
 class TaskPage extends StatefulWidget {
   final Event event;
 
-  const TaskPage({Key? key, required this.event}) : super(key: key);
+  const TaskPage({super.key, required this.event});
 
   @override
   State<TaskPage> createState() => _TaskPageState();

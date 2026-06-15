@@ -5,7 +5,7 @@ import '../main.dart';
 
 /// Adds a new event
 class AddEvent extends StatefulWidget {
-  const AddEvent({Key? key}) : super(key: key);
+  const AddEvent({super.key});
 
   @override
   State<AddEvent> createState() => _AddEventState();

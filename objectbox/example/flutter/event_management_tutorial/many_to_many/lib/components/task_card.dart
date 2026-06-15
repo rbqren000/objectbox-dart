@@ -9,7 +9,7 @@ import 'delete_menu.dart';
 class TaskCard extends StatefulWidget {
   final Task? task;
 
-  const TaskCard({Key? key, this.task}) : super(key: key);
+  const TaskCard({super.key, this.task});
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -121,7 +121,7 @@ class _TaskCardState extends State<TaskCard> {
                   PopupMenuButton<DeleteMenu>(
                     onSelected: (item) => onSelected(context, widget.task!),
                     itemBuilder: (BuildContext context) =>
-                        [...MenuItems.itemsFirst.map(buildItem).toList()],
+                        [...MenuItems.itemsFirst.map(buildItem)],
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Icon(color: Colors.grey, Icons.more_horiz),

@@ -7,7 +7,7 @@ import './owner_select.dart';
 class AddTask extends StatefulWidget {
   final Event event;
 
-  const AddTask({Key? key, required this.event}) : super(key: key);
+  const AddTask({super.key, required this.event});
 
   @override
   State<AddTask> createState() => _AddTaskState();
@@ -112,7 +112,7 @@ class _AddTaskState extends State<AddTask> {
         ]));
   }
 
-  Widget buildSingleOwner(context) {
+  Widget buildSingleOwner(BuildContext context) {
     dynamic onTap() async {
       final selectedOwners = await Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => const OwnerList()));

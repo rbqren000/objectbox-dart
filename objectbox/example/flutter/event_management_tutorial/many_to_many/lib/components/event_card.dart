@@ -10,7 +10,7 @@ import 'task_page.dart';
 class EventCard extends StatefulWidget {
   final Event event;
 
-  const EventCard({Key? key, required this.event}) : super(key: key);
+  const EventCard({super.key, required this.event});
 
   @override
   State<EventCard> createState() => _EventCardState();
