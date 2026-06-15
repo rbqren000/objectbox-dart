@@ -23,12 +23,13 @@ class ObjectBox {
 
     // Store openStore() {...} is defined in the generated objectbox.g.dart
     final store = openStore(
-        directory: "obx-demo-vectorsearch-cities",
-        macosApplicationGroup: "objectbox.demo");
+      directory: "obx-demo-vectorsearch-cities",
+      macosApplicationGroup: "objectbox.demo",
+    );
     return ObjectBox._create(store);
   }
 
-  _putCityData() {
+  void _putCityData() {
     _cityBox.putMany([
       City("Barcelona", [41.385063, 2.173404]),
       City("Nairobi", [-1.292066, 36.821945]),
@@ -39,15 +40,18 @@ class ObjectBox {
   Query<City> _queryTwoClosestNeighbors() {
     final madrid = [40.416775, -3.703790]; // query vector
     // Prepare a Query object to search for the 2 closest neighbors:
-    final query =
-        _cityBox.query(City_.location.nearestNeighborsF32(madrid, 2)).build();
+    final query = _cityBox
+        .query(City_.location.nearestNeighborsF32(madrid, 2))
+        .build();
 
     // Combine with other conditions as usual
     // ignore: unused_local_variable
     final queryCombined = _cityBox
-        .query(City_.location
-            .nearestNeighborsF32(madrid, 2)
-            .and(City_.name.startsWith("B")))
+        .query(
+          City_.location
+              .nearestNeighborsF32(madrid, 2)
+              .and(City_.name.startsWith("B")),
+        )
         .build();
 
     return query;
