@@ -7,6 +7,7 @@ import 'objectbox.dart';
 
 /// Provides access to the ObjectBox Store throughout the app.
 late ObjectBox objectbox;
+
 Future<void> main() async {
   // This is required so ObjectBox can get the application directory
   // to store the database in.
@@ -25,9 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ObjectBox Relations Application',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(),
     );
   }
@@ -44,23 +43,19 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Events"),
-      ),
+      appBar: AppBar(title: const Text("Events")),
       body: Padding(
         padding: const EdgeInsets.all(5.0),
-        child: Column(
-          children: const [
-            Expanded(child: EventList()),
-          ],
-        ),
+        child: Column(children: const [Expanded(child: EventList())]),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddEvent()));
-          },
-          child: const Text("+", style: TextStyle(fontSize: 29))),
+        onPressed: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => const AddEvent()));
+        },
+        child: const Text("+", style: TextStyle(fontSize: 29)),
+      ),
     );
   }
 }

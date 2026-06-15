@@ -60,38 +60,42 @@ class _AddTaskState extends State<AddTask> {
     return Scaffold(
       appBar: AppBar(title: const Text("Add Task")),
       key: UniqueKey(),
-      body: Column(children: <Widget>[
-        Container(
+      body: Column(
+        children: <Widget>[
+          Container(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: TextField(
-              controller: inputController,
-            )),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Row(
-            children: [
-              const Text("Assign Owner:", style: TextStyle(fontSize: 17)),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: DropdownButton<int>(
+            child: TextField(controller: inputController),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: [
+                const Text("Assign Owner:", style: TextStyle(fontSize: 17)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: DropdownButton<int>(
                     value: currentOwner.id,
                     items: owners
-                        .map((element) => DropdownMenuItem(
+                        .map(
+                          (element) => DropdownMenuItem(
                             value: element.id,
-                            child: Text(element.name,
-                                style: const TextStyle(
-                                    fontSize: 15.0,
-                                    height: 1.0,
-                                    overflow: TextOverflow.fade))))
+                            child: Text(
+                              element.name,
+                              style: const TextStyle(
+                                fontSize: 15.0,
+                                height: 1.0,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ),
+                          ),
+                        )
                         .toList(),
-                    underline: Container(
-                      height: 1.5,
-                      color: Colors.blueAccent,
-                    ),
-                    onChanged: (value) => {updateOwner(value!)}),
-              ),
-              const Spacer(),
-              TextButton(
+                    underline: Container(height: 1.5, color: Colors.blueAccent),
+                    onChanged: (value) => {updateOwner(value!)},
+                  ),
+                ),
+                const Spacer(),
+                TextButton(
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -100,7 +104,8 @@ class _AddTaskState extends State<AddTask> {
                         content: TextField(
                           autofocus: true,
                           decoration: const InputDecoration(
-                              hintText: 'Enter the owner name'),
+                            hintText: 'Enter the owner name',
+                          ),
                           controller: ownerInputController,
                         ),
                         actions: [
@@ -119,33 +124,35 @@ class _AddTaskState extends State<AddTask> {
                   child: const Text(
                     "Add Owner",
                     style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
-          child: Row(
-            children: [
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: ElevatedButton(
-                  child: const Text(
-                    "Save",
-                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    createTask();
-
-                    Navigator.pop(context);
-                  },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        )
-      ]),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            child: Row(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: ElevatedButton(
+                    child: const Text(
+                      "Save",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {
+                      createTask();
+
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

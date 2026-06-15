@@ -25,27 +25,24 @@ class _TaskPageState extends State<TaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: UniqueKey(),
-      appBar: AppBar(
-        title: const Text("Tasks"),
-      ),
+      appBar: AppBar(title: const Text("Tasks")),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          children: [
-            Expanded(
-                child: TaskList(
-              eventId: widget.event.id,
-            )),
-          ],
+          children: [Expanded(child: TaskList(eventId: widget.event.id))],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => AddTask(event: widget.event)));
-            setState(() {});
-          },
-          child: const Text("+", style: TextStyle(fontSize: 29))),
+        onPressed: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => AddTask(event: widget.event),
+            ),
+          );
+          setState(() {});
+        },
+        child: const Text("+", style: TextStyle(fontSize: 29)),
+      ),
     );
   }
 }

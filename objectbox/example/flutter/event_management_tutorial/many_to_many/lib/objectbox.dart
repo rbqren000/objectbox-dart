@@ -45,16 +45,22 @@ class ObjectBox {
 
     // Future<Store> openStore() {...} is defined in the generated objectbox.g.dart
     final store = await openStore(
-        directory: p.join((await getApplicationDocumentsDirectory()).path,
-            "event_manager_objectbox"),
-        macosApplicationGroup: "objectbox.demo");
+      directory: p.join(
+        (await getApplicationDocumentsDirectory()).path,
+        "event_manager_objectbox",
+      ),
+      macosApplicationGroup: "objectbox.demo",
+    );
 
     return ObjectBox._create(store);
   }
 
   void _putDemoData() {
-    Event event = Event("One Direction Concert",
-        date: DateTime.now(), location: "Miami, Florida");
+    Event event = Event(
+      "One Direction Concert",
+      date: DateTime.now(),
+      location: "Miami, Florida",
+    );
 
     Owner owner1 = Owner('Roger');
     Owner owner2 = Owner('Eren');
@@ -85,7 +91,8 @@ class ObjectBox {
     int eventId = eventBox.put(updatedEvent);
 
     debugPrint(
-        "Added Task: ${newTask.text} assigned to ${newTask.owner.map((owner) => owner.name).join(", ")} in event: ${eventBox.get(eventId)?.name}");
+      "Added Task: ${newTask.text} assigned to ${newTask.owner.map((owner) => owner.name).join(", ")} in event: ${eventBox.get(eventId)?.name}",
+    );
   }
 
   void addEvent(String name, DateTime date, String location) {

@@ -17,26 +17,26 @@ class _OwnerListState extends State<OwnerList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Select Owner'),
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: owners.map((owner) {
-                  final isSelected = selectedOwners.contains(owner);
+      appBar: AppBar(title: const Text('Select Owner')),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              children: owners.map((owner) {
+                final isSelected = selectedOwners.contains(owner);
 
-                  return OwnersTileWidget(
-                      owner: owner,
-                      isSelected: isSelected,
-                      onSelectedOwner: selectOwner);
-                }).toList(),
-              ),
+                return OwnersTileWidget(
+                  owner: owner,
+                  isSelected: isSelected,
+                  onSelectedOwner: selectOwner,
+                );
+              }).toList(),
             ),
-            buildSelectButton(context),
-          ],
-        ));
+          ),
+          buildSelectButton(context),
+        ],
+      ),
+    );
   }
 
   void selectOwner(Owner owner) {
@@ -53,10 +53,15 @@ class _OwnerListState extends State<OwnerList> {
     return Padding(
       padding: const EdgeInsets.all(50.0),
       child: ElevatedButton(
-          onPressed: (() => Navigator.pop(context, selectedOwners)),
-          child: Text(label,
-              style: const TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255), fontSize: 16))),
+        onPressed: (() => Navigator.pop(context, selectedOwners)),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Color.fromARGB(255, 255, 255, 255),
+            fontSize: 16,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -66,25 +71,30 @@ class OwnersTileWidget extends StatelessWidget {
   final bool isSelected;
   final ValueChanged<Owner> onSelectedOwner;
 
-  const OwnersTileWidget(
-      {super.key,
-      required this.owner,
-      required this.isSelected,
-      required this.onSelectedOwner});
+  const OwnersTileWidget({
+    super.key,
+    required this.owner,
+    required this.isSelected,
+    required this.onSelectedOwner,
+  });
 
   @override
   Widget build(BuildContext context) {
     final selectedColor = Theme.of(context).primaryColor;
     final style = isSelected
         ? TextStyle(
-            fontSize: 18, color: selectedColor, fontWeight: FontWeight.bold)
+            fontSize: 18,
+            color: selectedColor,
+            fontWeight: FontWeight.bold,
+          )
         : const TextStyle(fontSize: 18);
 
     return ListTile(
       onTap: () => onSelectedOwner(owner),
       title: Text(owner.name, style: style),
-      trailing:
-          isSelected ? Icon(Icons.check, color: selectedColor, size: 26) : null,
+      trailing: isSelected
+          ? Icon(Icons.check, color: selectedColor, size: 26)
+          : null,
     );
   }
 }

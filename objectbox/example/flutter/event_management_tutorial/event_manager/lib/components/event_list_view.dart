@@ -19,17 +19,18 @@ class _EventListState extends State<EventList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Event>>(
-        stream: objectbox.getEvents(),
-        builder: (context, snapshot) {
-          if (snapshot.data?.isNotEmpty ?? false) {
-            return ListView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.hasData ? snapshot.data!.length : 0,
-                itemBuilder: _itemBuilder(snapshot.data ?? []));
-          } else {
-            return const Center(
-                child: Text("Press the + icon to add an event"));
-          }
-        });
+      stream: objectbox.getEvents(),
+      builder: (context, snapshot) {
+        if (snapshot.data?.isNotEmpty ?? false) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: snapshot.hasData ? snapshot.data!.length : 0,
+            itemBuilder: _itemBuilder(snapshot.data ?? []),
+          );
+        } else {
+          return const Center(child: Text("Press the + icon to add an event"));
+        }
+      },
+    );
   }
 }

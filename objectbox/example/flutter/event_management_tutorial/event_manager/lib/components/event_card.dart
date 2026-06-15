@@ -21,8 +21,11 @@ class _EventCardState extends State<EventCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TaskPage(event: widget.event)));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => TaskPage(event: widget.event),
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.all(5),
@@ -37,7 +40,7 @@ class _EventCardState extends State<EventCard> {
                     color: Color.fromARGB(255, 168, 168, 168),
                     blurRadius: 5,
                     offset: Offset(1, 2),
-                  )
+                  ),
                 ],
               ),
               child: Row(
@@ -51,9 +54,10 @@ class _EventCardState extends State<EventCard> {
                           child: Text(
                             widget.event.name,
                             style: const TextStyle(
-                                fontSize: 25.0,
-                                height: 1.0,
-                                overflow: TextOverflow.fade),
+                              fontSize: 25.0,
+                              height: 1.0,
+                              overflow: TextOverflow.fade,
+                            ),
                           ),
                         ),
                         Container(
@@ -61,18 +65,23 @@ class _EventCardState extends State<EventCard> {
                           padding: const EdgeInsets.all(10.0),
                           child: Row(
                             children: [
-                              Text("Location: ${widget.event.location}",
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      height: 1.0,
-                                      overflow: TextOverflow.fade)),
+                              Text(
+                                "Location: ${widget.event.location}",
+                                style: const TextStyle(
+                                  fontSize: 15.0,
+                                  height: 1.0,
+                                  overflow: TextOverflow.fade,
+                                ),
+                              ),
                               const Spacer(),
                               Text(
-                                  "Date: ${DateFormat.yMd().format(widget.event.date!)}",
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      height: 1.0,
-                                      overflow: TextOverflow.fade))
+                                "Date: ${DateFormat.yMd().format(widget.event.date!)}",
+                                style: const TextStyle(
+                                  fontSize: 15.0,
+                                  height: 1.0,
+                                  overflow: TextOverflow.fade,
+                                ),
+                              ),
                             ],
                           ),
                         ),
