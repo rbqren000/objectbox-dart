@@ -48,9 +48,10 @@ format-and-analyze:
     # Check formatting only for Dart packages (run before generating code to exclude generated code)
     - dart format --set-exit-if-changed benchmark
     - dart format --set-exit-if-changed generator
-    - dart format --set-exit-if-changed objectbox
-    - dart format --set-exit-if-changed objectbox_test
+    # For objectbox package, only check lib and Dart Native examples, other examples require Flutter
+    - dart format --set-exit-if-changed objectbox/lib
     - dart format --set-exit-if-changed objectbox/example/dart-native
+    - dart format --set-exit-if-changed objectbox_test
     # Generate code
     - cd benchmark
     - dart run build_runner build
