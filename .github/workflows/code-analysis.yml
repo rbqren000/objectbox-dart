@@ -33,6 +33,11 @@ jobs:
           dart pub get --directory=benchmark
           dart pub get --directory=generator
           dart pub get --directory=objectbox
+          dart pub get --directory=objectbox/example/dart-native/vectorsearch_cities
+          flutter pub get --directory=objectbox/example/flutter/event_management_tutorial/event_manager
+          flutter pub get --directory=objectbox/example/flutter/event_management_tutorial/many_to_many
+          flutter pub get --directory=objectbox/example/flutter/objectbox_demo
+          flutter pub get --directory=objectbox/example/flutter/objectbox_demo_relations
           dart pub get --directory=objectbox_test
           flutter pub get --directory=flutter_libs
           flutter pub get --directory=sync_flutter_libs
