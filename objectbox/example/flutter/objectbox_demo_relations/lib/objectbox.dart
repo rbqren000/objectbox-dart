@@ -50,9 +50,12 @@ class ObjectBox {
 
     // Future<Store> openStore() {...} is defined in the generated objectbox.g.dart
     final store = await openStore(
-        directory: p.join((await getApplicationDocumentsDirectory()).path,
-            "obx-demo-relations"),
-        macosApplicationGroup: "objectbox.demo");
+      directory: p.join(
+        (await getApplicationDocumentsDirectory()).path,
+        "obx-demo-relations",
+      ),
+      macosApplicationGroup: "objectbox.demo",
+    );
 
     if (kDebugMode) {
       debugPrint("Using ObjectBox database version ${Store.databaseVersion()}");
@@ -79,8 +82,10 @@ class ObjectBox {
   Stream<List<Task>> getTasks() {
     // Query for all tasks, sorted by their date.
     // https://docs.objectbox.io/queries
-    final qBuilderTasks =
-        _taskBox.query().order(Task_.dateCreated, flags: Order.descending);
+    final qBuilderTasks = _taskBox.query().order(
+      Task_.dateCreated,
+      flags: Order.descending,
+    );
     // Build and watch the query,
     // set triggerImmediately to emit the query immediately on listen.
     return qBuilderTasks

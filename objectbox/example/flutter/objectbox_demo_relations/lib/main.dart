@@ -27,10 +27,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Task-list app example',
-        theme: ThemeData(primarySwatch: Colors.teal),
-        home: const MyHomePage(title: 'ObjectBox Example'),
-      );
+    title: 'Task-list app example',
+    theme: ThemeData(primarySwatch: Colors.teal),
+    home: const MyHomePage(title: 'ObjectBox Example'),
+  );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -45,27 +45,26 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        // Note: testing with Flutter 3.7 which still requires const for children.
-        // ignore: prefer_const_constructors
-        body: Column(
-          children: const [
-            SizedBox(
-              height: 10,
-            ),
-            SwipeLeftNotification(),
-            TaskList()
-          ],
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          key: const Key('add'),
-          label: const Text('Add Task'),
-          icon: const Icon(Icons.add),
-          heroTag: null,
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const TaskInput()));
-          },
-        ),
-      );
+    appBar: AppBar(title: Text(widget.title)),
+    // Note: testing with Flutter 3.7 which still requires const for children.
+    // ignore: prefer_const_constructors
+    body: Column(
+      children: const [
+        SizedBox(height: 10),
+        SwipeLeftNotification(),
+        TaskList(),
+      ],
+    ),
+    floatingActionButton: FloatingActionButton.extended(
+      key: const Key('add'),
+      label: const Text('Add Task'),
+      icon: const Icon(Icons.add),
+      heroTag: null,
+      onPressed: () {
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (context) => const TaskInput()));
+      },
+    ),
+  );
 }

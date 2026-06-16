@@ -59,61 +59,65 @@ class _TaskInputState extends State<TaskInput> {
     return Scaffold(
       appBar: AppBar(title: Text(appBarTitle)),
       body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(children: <Widget>[
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[
             Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: TextField(
-                  controller: inputController,
-                )),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: TextField(controller: inputController),
+            ),
             Row(
               children: <Widget>[
                 const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text("Tags: ",
-                        style: TextStyle(
-                          fontSize: 15.0,
-                        ))),
+                  padding: EdgeInsets.all(10.0),
+                  child: Text("Tags: ", style: TextStyle(fontSize: 15.0)),
+                ),
                 DropdownButton<int>(
-                    value: currentTag.id,
-                    items: tags.map(buildMenuItem).toList(),
-                    underline: Container(
-                      height: 2,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    onChanged: (value) => {
-                          setState(
-                            () {
-                              currentTag = objectbox.getTag(value!);
-                              debugPrint("tag updated to ${currentTag.name}");
-                            },
-                          )
-                        }),
+                  value: currentTag.id,
+                  items: tags.map(buildMenuItem).toList(),
+                  underline: Container(
+                    height: 2,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  onChanged: (value) => {
+                    setState(() {
+                      currentTag = objectbox.getTag(value!);
+                      debugPrint("tag updated to ${currentTag.name}");
+                    }),
+                  },
+                ),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0),
                   child: TextButton(
-                      child: const Text('Save'),
-                      onPressed: () {
-                        setState(() {
-                          objectbox.saveTask(
-                              existingTask, inputController.text, currentTag);
-                          // Screen is left afterwards, no need to clear or update UI.
-                          Navigator.pop(context);
-                        });
-                      }),
+                    child: const Text('Save'),
+                    onPressed: () {
+                      setState(() {
+                        objectbox.saveTask(
+                          existingTask,
+                          inputController.text,
+                          currentTag,
+                        );
+                        // Screen is left afterwards, no need to clear or update UI.
+                        Navigator.pop(context);
+                      });
+                    },
+                  ),
                 ),
               ],
-            )
-          ])),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: NewTag(updateTags: _updateTags),
     );
   }
 
   DropdownMenuItem<int> buildMenuItem(Tag item) => DropdownMenuItem(
-      value: item.id,
-      child: Text(
-        item.name,
-        style: const TextStyle(fontSize: 15.0, color: Colors.black),
-      ));
+    value: item.id,
+    child: Text(
+      item.name,
+      style: const TextStyle(fontSize: 15.0, color: Colors.black),
+    ),
+  );
 }

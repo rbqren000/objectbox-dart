@@ -25,7 +25,7 @@ class Task {
   DateTime? dateFinished;
 
   Task(this.text, {this.id = 0, DateTime? dateCreated})
-      : dateCreated = dateCreated ?? DateTime.now();
+    : dateCreated = dateCreated ?? DateTime.now();
 
   String get dateCreatedFormat =>
       DateFormat('dd.MM.yy HH:mm:ss').format(dateCreated);
