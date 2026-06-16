@@ -6,8 +6,8 @@ This is the project from the Event Management tutorial on YouTube:
 
 ## File structure
 ```
-\--objectbox_flutter_tutorial
-    \--event_manager_base
+\--event_management_tutorial
+    \--event_manager
     \--many_to_many
 ```
 

@@ -7,7 +7,7 @@ import './owner_select.dart';
 class AddTask extends StatefulWidget {
   final Event event;
 
-  const AddTask({Key? key, required this.event}) : super(key: key);
+  const AddTask({super.key, required this.event});
 
   @override
   State<AddTask> createState() => _AddTaskState();
@@ -18,6 +18,7 @@ class _AddTaskState extends State<AddTask> {
   final ownerInputController = TextEditingController();
 
   List<Owner> currentOwner = [];
+
   @override
   void initState() {
     super.initState();
@@ -34,13 +35,13 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Add Task")),
-        body: Column(children: <Widget>[
+      appBar: AppBar(title: const Text("Add Task")),
+      body: Column(
+        children: <Widget>[
           Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: TextField(
-                controller: inputController,
-              )),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: TextField(controller: inputController),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
@@ -56,34 +57,36 @@ class _AddTaskState extends State<AddTask> {
               children: [
                 const Spacer(),
                 TextButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title: const Text('New Owner'),
-                          content: TextField(
-                            autofocus: true,
-                            decoration: const InputDecoration(
-                                hintText: 'Enter the owner name'),
-                            controller: ownerInputController,
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('New Owner'),
+                        content: TextField(
+                          autofocus: true,
+                          decoration: const InputDecoration(
+                            hintText: 'Enter the owner name',
                           ),
-                          actions: [
-                            TextButton(
-                              child: const Text('Submit'),
-                              onPressed: () {
-                                _addOwner(ownerInputController.text);
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
+                          controller: ownerInputController,
                         ),
-                      );
-                      ownerInputController.clear();
-                    },
-                    child: const Text(
-                      "Add Owner",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
+                        actions: [
+                          TextButton(
+                            child: const Text('Submit'),
+                            onPressed: () {
+                              _addOwner(ownerInputController.text);
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                    ownerInputController.clear();
+                  },
+                  child: const Text(
+                    "Add Owner",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ),
           ),
@@ -100,7 +103,10 @@ class _AddTaskState extends State<AddTask> {
                   onPressed: () {
                     if (inputController.text.isNotEmpty) {
                       objectbox.addTask(
-                          inputController.text, currentOwner, widget.event);
+                        inputController.text,
+                        currentOwner,
+                        widget.event,
+                      );
 
                       Navigator.pop(context);
                     }
@@ -108,14 +114,17 @@ class _AddTaskState extends State<AddTask> {
                 ),
               ),
             ],
-          )
-        ]));
+          ),
+        ],
+      ),
+    );
   }
 
-  Widget buildSingleOwner(context) {
+  Widget buildSingleOwner(BuildContext context) {
     dynamic onTap() async {
-      final selectedOwners = await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const OwnerList()));
+      final selectedOwners = await Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (context) => const OwnerList()));
 
       if (selectedOwners == null) return;
       setState(() {
@@ -129,13 +138,11 @@ class _AddTaskState extends State<AddTask> {
         ? buildListTile(title: "No Owner", onTap: onTap)
         : buildListTile(
             title: currentOwner.map((owners) => owners.name).join(", "),
-            onTap: onTap);
+            onTap: onTap,
+          );
   }
 
-  Widget buildListTile({
-    required String title,
-    required VoidCallback onTap,
-  }) {
+  Widget buildListTile({required String title, required VoidCallback onTap}) {
     return ListTile(
       onTap: onTap,
       title: Text(
@@ -144,8 +151,11 @@ class _AddTaskState extends State<AddTask> {
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(color: Colors.black, fontSize: 18),
       ),
-      trailing:
-          const Icon(Icons.arrow_drop_down, color: Colors.black, size: 20),
+      trailing: const Icon(
+        Icons.arrow_drop_down,
+        color: Colors.black,
+        size: 20,
+      ),
     );
   }
 }

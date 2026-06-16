@@ -7,6 +7,7 @@ import 'objectbox.dart';
 
 /// Provides access to the ObjectBox Store throughout the app.
 late ObjectBox objectbox;
+
 Future<void> main() async {
   // This is required so ObjectBox can get the application directory
   // to store the database in.
@@ -18,23 +19,21 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ObjectBox Relations Application',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -45,23 +44,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: UniqueKey(),
-      appBar: AppBar(
-        title: const Text("Events"),
-      ),
+      appBar: AppBar(title: const Text("Events")),
       body: Padding(
         padding: const EdgeInsets.all(5.0),
-        child: Column(
-          children: const [
-            Expanded(child: EventList()),
-          ],
-        ),
+        child: Column(children: const [Expanded(child: EventList())]),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddEvent()));
-          },
-          child: const Text("+", style: TextStyle(fontSize: 29))),
+        onPressed: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => const AddEvent()));
+        },
+        child: const Text("+", style: TextStyle(fontSize: 29)),
+      ),
     );
   }
 }

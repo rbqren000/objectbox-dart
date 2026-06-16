@@ -1,26 +1,3 @@
-**/.dart_tool/
-**/.packages
-**/.pub/
-**/pubspec.lock
-**/build/
-
-.DS_Store
-.idea/
-.vscode/
-*.iml
-
-download/
-lib/*.dll
-*.dll
-lib/*.dylib
-lib/*.so
-lib/*.a
-
-**/*.g.dart
-
-# backup created by publish.sh - ignore to avoid publishing
-**/pubspec.yaml.original
-
 # Miscellaneous
 *.class
 *.log
@@ -28,9 +5,11 @@ lib/*.a
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -48,15 +27,11 @@ migrate_working_dir/
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
-.flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
 /build/
-
-# Web related
-lib/generated_plugin_registrant.dart
+/coverage/
 
 # Symbolication related
 app.*.symbols
@@ -69,3 +44,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Not checking in Podfile.lock to avoid updating it for every
+# ObjectBox release and to always build with latest dependencies on CI.
+ios/Podfile.lock
+macos/Podfile.lock

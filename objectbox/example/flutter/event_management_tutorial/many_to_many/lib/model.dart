@@ -40,7 +40,6 @@ class Owner {
 class Event {
   @Id()
   int id;
-
   String name;
 
   @Property(type: PropertyType.date)

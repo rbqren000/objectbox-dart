@@ -8,10 +8,7 @@ import '../model.dart';
 class TaskList extends StatefulWidget {
   final int eventId;
 
-  const TaskList({
-    Key? key,
-    required this.eventId,
-  }) : super(key: key);
+  const TaskList({super.key, required this.eventId});
 
   @override
   State<TaskList> createState() => _TaskListState();
@@ -25,16 +22,18 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Task>>(
-        stream: objectbox.getTasksOfEvent(widget.eventId),
-        builder: (context, snapshot) {
-          if (snapshot.data?.isNotEmpty ?? false) {
-            return ListView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.hasData ? snapshot.data!.length : 0,
-                itemBuilder: _itemBuilder(snapshot.data ?? []));
-          } else {
-            return const Center(child: Text("Press the + icon to add tasks"));
-          }
-        });
+      stream: objectbox.getTasksOfEvent(widget.eventId),
+      builder: (context, snapshot) {
+        if (snapshot.data?.isNotEmpty ?? false) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: snapshot.hasData ? snapshot.data!.length : 0,
+            itemBuilder: _itemBuilder(snapshot.data ?? []),
+          );
+        } else {
+          return const Center(child: Text("Press the + icon to add tasks"));
+        }
+      },
+    );
   }
 }

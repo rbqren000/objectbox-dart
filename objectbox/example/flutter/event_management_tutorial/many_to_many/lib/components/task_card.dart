@@ -9,7 +9,7 @@ import 'delete_menu.dart';
 class TaskCard extends StatefulWidget {
   final Task? task;
 
-  const TaskCard({Key? key, this.task}) : super(key: key);
+  const TaskCard({super.key, this.task});
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -57,7 +57,7 @@ class _TaskCardState extends State<TaskCard> {
                     color: Color.fromARGB(255, 168, 168, 168),
                     blurRadius: 5,
                     offset: Offset(1, 2),
-                  )
+                  ),
                 ],
               ),
               child: Row(
@@ -86,33 +86,37 @@ class _TaskCardState extends State<TaskCard> {
                                       height: 1.0,
                                       color: Color.fromARGB(255, 73, 73, 73),
                                       overflow: TextOverflow.ellipsis,
-                                      decoration: TextDecoration.lineThrough)
+                                      decoration: TextDecoration.lineThrough,
+                                    )
                                   : const TextStyle(
                                       fontSize: 20.0,
                                       height: 1.0,
-                                      overflow: TextOverflow.ellipsis),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                             ),
                           ),
                         ),
                         Flexible(
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Assigned to: $assignedString",
-                                style: taskStatus!
-                                    ? const TextStyle(
-                                        fontSize: 15.0,
-                                        height: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 106, 106, 106),
-                                        fontStyle: FontStyle.italic,
-                                        decoration: TextDecoration.lineThrough,
-                                        overflow: TextOverflow.visible)
-                                    : const TextStyle(
-                                        fontSize: 15.0,
-                                        height: 1.0,
-                                        overflow: TextOverflow.visible,
-                                        fontStyle: FontStyle.italic,
-                                      )),
+                            child: Text(
+                              "Assigned to: $assignedString",
+                              style: taskStatus!
+                                  ? const TextStyle(
+                                      fontSize: 15.0,
+                                      height: 1.0,
+                                      color: Color.fromARGB(255, 106, 106, 106),
+                                      fontStyle: FontStyle.italic,
+                                      decoration: TextDecoration.lineThrough,
+                                      overflow: TextOverflow.visible,
+                                    )
+                                  : const TextStyle(
+                                      fontSize: 15.0,
+                                      height: 1.0,
+                                      overflow: TextOverflow.visible,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                            ),
                           ),
                         ),
                       ],
@@ -120,8 +124,9 @@ class _TaskCardState extends State<TaskCard> {
                   ),
                   PopupMenuButton<DeleteMenu>(
                     onSelected: (item) => onSelected(context, widget.task!),
-                    itemBuilder: (BuildContext context) =>
-                        [...MenuItems.itemsFirst.map(buildItem).toList()],
+                    itemBuilder: (BuildContext context) => [
+                      ...MenuItems.itemsFirst.map(buildItem),
+                    ],
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Icon(color: Colors.grey, Icons.more_horiz),
@@ -142,6 +147,7 @@ class _TaskCardState extends State<TaskCard> {
   void onSelected(BuildContext context, Task task) {
     objectbox.taskBox.remove(task.id);
     debugPrint(
-        "Task ${task.text} deleted and had owners: ${task.owner.map((owner) => owner.name).join(", ")}");
+      "Task ${task.text} deleted and had owners: ${task.owner.map((owner) => owner.name).join(", ")}",
+    );
   }
 }
